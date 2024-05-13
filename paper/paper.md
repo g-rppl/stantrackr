@@ -1,5 +1,5 @@
 ---
-title: 'stantrackr: An R package to model flight paths from large-scale radio-telemetry data'
+title: 'movetrack: An R package to model flight paths from large-scale radio-telemetry data'
 tags:
   - R
   - animal movement
@@ -64,7 +64,7 @@ $$
 $$
 
 The state-depended parameter, $\lambda_n$, can take values between 0 and 1 (i.e., $0 \leq \lambda \leq 1$), and controls the degree of correlation between steps.
-By default, `stantrackr` estimates track-specific $\lambda_n$ values, but it is also possible to use the same $\lambda_n$ for all tracks by setting `i_lambda = FALSE`.
+By default, `movetrack` estimates track-specific $\lambda_n$ values, but it is also possible to use the same $\lambda_n$ for all tracks by setting `i_lambda = FALSE`.
 
 ### Observation model
 
