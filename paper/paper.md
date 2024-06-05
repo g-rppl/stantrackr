@@ -26,9 +26,14 @@ bibliography: paper.bib
 
 # Statement of need
 
-[@Baldwin2018] [@AugerMethe2021] [@Jonsen2005]
+[@AugerMethe2021] [@Jonsen2005]
 
-# Mathematics
+# Methodology
+## Data structure and localisation
+
+Unlike with data from GPS devices, geographic positions can not directly be inferred from radio-telemetry data. Instead, it is necessary to estimate the geographic positions of an animal from available information about the receivers, antennas and the strength of the detected radio signal. For this purpose, `movetrack` uses a geometric approach described in @Baldwin2018 that is implemented in the `locate()` function. This is a three-step process that utilizes basic principles of antenna geometry: 1) For each detection, a coarse location is estimated along the directional beam of the receiving antenna. The distance to the receiver is assumed to be half of the maximum detection range of the antenna, which can be set antenna-type specific using the `aRange` argument. 2) All locations are provided with an oscillating measurement error that arises from antenna geometry and orientation. 3) Locations and measurement errors from all antennas are aggregated over a desired time interval that can be set using the `dTime` argument. Finally, weighted means (by signal strength) are calculated for each time interval. This data forms the basis of the observational part in the Hidden Markov Model.
+
+## Hidden Markov Model
 
 Hidden Markov Models (HMM) describe the evolution of a sequence of random variables, $\{S_t\}$ (i.e. behavioural states), which are not directly observable, but can be inferred from another sequence of random variables, $\{Y_t\}$, that are observable (i.e. locations). In the use case of `movetrack`, the hidden state sequence may alter between 'directed flight' or 'local movement', but the number of states affecting flight directionality can easily be set appropriately using the `states` argument. It is also possible to run a simple correlated random walk with only one state (`states = 1`).
 
